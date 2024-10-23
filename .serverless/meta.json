@@ -1,0 +1,1224 @@
+{
+  "C:\\Users\\Elmo\\Desktop\\Dashboard\\backEnd\\Auth": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.7",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>"
+    },
+    "composeServiceName": null,
+    "servicePath": "C:\\Users\\Elmo\\Desktop\\Dashboard\\backEnd\\Auth",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "auth-serverless1",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "region": "us-east-1",
+        "iamRoleStatements": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "cognito-idp:AdminGetUser"
+            ],
+            "Resource": "arn:aws:cognito-idp:us-east-1:381491854638:userpool/us-east-1_gnDA7HJkq"
+          },
+          {
+            "Effect": "Allow",
+            "Action": [
+              "ssm:GetParameters"
+            ],
+            "Resource": "arn:aws:ssm:us-east-1:381491854638:parameter/prod-*"
+          }
+        ],
+        "stage": "dev",
+        "versionFunctions": true,
+        "compiledCloudFormationTemplate": {
+          "AWSTemplateFormatVersion": "2010-09-09",
+          "Description": "The AWS CloudFormation template for this Serverless application",
+          "Resources": {
+            "RegisterUserLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/auth-serverless1-dev-registerUser"
+              }
+            },
+            "GetUserInfoLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/auth-serverless1-dev-getUserInfo"
+              }
+            },
+            "LoginUserLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/auth-serverless1-dev-loginUser"
+              }
+            },
+            "CustomMessageLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/auth-serverless1-dev-customMessage"
+              }
+            },
+            "ForgotPasswordLogGroup": "<REDACTED>",
+            "ConfirmNewPasswordLogGroup": "<REDACTED>",
+            "IamRoleLambdaExecution": {
+              "Type": "AWS::IAM::Role",
+              "Properties": {
+                "AssumeRolePolicyDocument": {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Principal": {
+                        "Service": [
+                          "lambda.amazonaws.com"
+                        ]
+                      },
+                      "Action": [
+                        "sts:AssumeRole"
+                      ]
+                    }
+                  ]
+                },
+                "Policies": [
+                  {
+                    "PolicyName": {
+                      "Fn::Join": [
+                        "-",
+                        [
+                          "auth-serverless1",
+                          "dev",
+                          "lambda"
+                        ]
+                      ]
+                    },
+                    "PolicyDocument": {
+                      "Version": "2012-10-17",
+                      "Statement": [
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "logs:CreateLogStream",
+                            "logs:CreateLogGroup",
+                            "logs:TagResource"
+                          ],
+                          "Resource": [
+                            {
+                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/auth-serverless1-dev*:*"
+                            }
+                          ]
+                        },
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "logs:PutLogEvents"
+                          ],
+                          "Resource": [
+                            {
+                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/auth-serverless1-dev*:*:*"
+                            }
+                          ]
+                        },
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "cognito-idp:AdminGetUser"
+                          ],
+                          "Resource": "arn:aws:cognito-idp:us-east-1:381491854638:userpool/us-east-1_gnDA7HJkq"
+                        },
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "ssm:GetParameters"
+                          ],
+                          "Resource": "arn:aws:ssm:us-east-1:381491854638:parameter/prod-*"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "Path": "/",
+                "RoleName": {
+                  "Fn::Join": [
+                    "-",
+                    [
+                      "auth-serverless1",
+                      "dev",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      "lambdaRole"
+                    ]
+                  ]
+                }
+              }
+            },
+            "RegisterUserLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
+                  "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+                },
+                "Handler": "register.registerUser",
+                "Runtime": "nodejs18.x",
+                "FunctionName": "auth-serverless1-dev-registerUser",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "RegisterUserLogGroup"
+              ]
+            },
+            "GetUserInfoLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
+                  "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+                },
+                "Handler": "getUserInfo.GetUserInfo",
+                "Runtime": "nodejs18.x",
+                "FunctionName": "auth-serverless1-dev-getUserInfo",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "GetUserInfoLogGroup"
+              ]
+            },
+            "LoginUserLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
+                  "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+                },
+                "Handler": "login.loginUser",
+                "Runtime": "nodejs18.x",
+                "FunctionName": "auth-serverless1-dev-loginUser",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "LoginUserLogGroup"
+              ]
+            },
+            "CustomMessageLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
+                  "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+                },
+                "Handler": "customMessage.customMessage",
+                "Runtime": "nodejs18.x",
+                "FunctionName": "auth-serverless1-dev-customMessage",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "CustomMessageLogGroup"
+              ]
+            },
+            "ForgotPasswordLambdaFunction": "<REDACTED>",
+            "ConfirmNewPasswordLambdaFunction": "<REDACTED>",
+            "RegisterUserLambdaVersionwBcpCueIRJeA15UAA0biDPzH5DInGNllP1JjoU4aA": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "RegisterUserLambdaFunction"
+                },
+                "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+              }
+            },
+            "GetUserInfoLambdaVersionr9kYUKLVhDQkmIyR5yDlHI9OyEm2B3CJtu5a3qpTFAw": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "GetUserInfoLambdaFunction"
+                },
+                "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+              }
+            },
+            "LoginUserLambdaVersionDgNSOJ1hvsrxg3s9bRvULTgZXQBYo6iSkjkO2Z6EM": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "LoginUserLambdaFunction"
+                },
+                "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+              }
+            },
+            "CustomMessageLambdaVersionaZ6c5eSufiDpxpfEVwaRQxlcJYsHMYQvGlbIGJ90Y": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "CustomMessageLambdaFunction"
+                },
+                "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+              }
+            },
+            "ForgotPasswordLambdaVersionzBH8w2f0FuUQJZZPt5AxTPt4UZLU8SKVjGOOKbR7gQ": "<REDACTED>",
+            "ConfirmNewPasswordLambdaVersion0eV18G83ngr8HVT2n0Z7DUUo8eM7pcfMcn7aIEdBX8": "<REDACTED>",
+            "ApiGatewayRestApi": {
+              "Type": "AWS::ApiGateway::RestApi",
+              "Properties": {
+                "Name": "dev-auth-serverless1",
+                "EndpointConfiguration": {
+                  "Types": [
+                    "EDGE"
+                  ]
+                },
+                "Policy": ""
+              }
+            },
+            "ApiGatewayResourceRegister": {
+              "Type": "AWS::ApiGateway::Resource",
+              "Properties": {
+                "ParentId": {
+                  "Fn::GetAtt": [
+                    "ApiGatewayRestApi",
+                    "RootResourceId"
+                  ]
+                },
+                "PathPart": "register",
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayResourceGetuserinfo": {
+              "Type": "AWS::ApiGateway::Resource",
+              "Properties": {
+                "ParentId": {
+                  "Fn::GetAtt": [
+                    "ApiGatewayRestApi",
+                    "RootResourceId"
+                  ]
+                },
+                "PathPart": "getUserInfo",
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayResourceLogin": {
+              "Type": "AWS::ApiGateway::Resource",
+              "Properties": {
+                "ParentId": {
+                  "Fn::GetAtt": [
+                    "ApiGatewayRestApi",
+                    "RootResourceId"
+                  ]
+                },
+                "PathPart": "login",
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayResourceCustommessage": {
+              "Type": "AWS::ApiGateway::Resource",
+              "Properties": {
+                "ParentId": {
+                  "Fn::GetAtt": [
+                    "ApiGatewayRestApi",
+                    "RootResourceId"
+                  ]
+                },
+                "PathPart": "customMessage",
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayResourceForgotpassword": "<REDACTED>",
+            "ApiGatewayResourceConfirmnewpassword": "<REDACTED>",
+            "ApiGatewayMethodRegisterOptions": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "OPTIONS",
+                "MethodResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": true,
+                      "method.response.header.Access-Control-Allow-Headers": true,
+                      "method.response.header.Access-Control-Allow-Methods": true
+                    },
+                    "ResponseModels": {}
+                  }
+                ],
+                "RequestParameters": {},
+                "Integration": {
+                  "Type": "MOCK",
+                  "RequestTemplates": {
+                    "application/json": "{statusCode:200}"
+                  },
+                  "ContentHandling": "CONVERT_TO_TEXT",
+                  "IntegrationResponses": [
+                    {
+                      "StatusCode": "200",
+                      "ResponseParameters": {
+                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                      },
+                      "ResponseTemplates": {
+                        "application/json": ""
+                      }
+                    }
+                  ]
+                },
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceRegister"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayMethodGetuserinfoOptions": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "OPTIONS",
+                "MethodResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": true,
+                      "method.response.header.Access-Control-Allow-Headers": true,
+                      "method.response.header.Access-Control-Allow-Methods": true
+                    },
+                    "ResponseModels": {}
+                  }
+                ],
+                "RequestParameters": {},
+                "Integration": {
+                  "Type": "MOCK",
+                  "RequestTemplates": {
+                    "application/json": "{statusCode:200}"
+                  },
+                  "ContentHandling": "CONVERT_TO_TEXT",
+                  "IntegrationResponses": [
+                    {
+                      "StatusCode": "200",
+                      "ResponseParameters": {
+                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                      },
+                      "ResponseTemplates": {
+                        "application/json": ""
+                      }
+                    }
+                  ]
+                },
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceGetuserinfo"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayMethodLoginOptions": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "OPTIONS",
+                "MethodResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": true,
+                      "method.response.header.Access-Control-Allow-Headers": true,
+                      "method.response.header.Access-Control-Allow-Methods": true
+                    },
+                    "ResponseModels": {}
+                  }
+                ],
+                "RequestParameters": {},
+                "Integration": {
+                  "Type": "MOCK",
+                  "RequestTemplates": {
+                    "application/json": "{statusCode:200}"
+                  },
+                  "ContentHandling": "CONVERT_TO_TEXT",
+                  "IntegrationResponses": [
+                    {
+                      "StatusCode": "200",
+                      "ResponseParameters": {
+                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                      },
+                      "ResponseTemplates": {
+                        "application/json": ""
+                      }
+                    }
+                  ]
+                },
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceLogin"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayMethodCustommessageOptions": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "OPTIONS",
+                "MethodResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": true,
+                      "method.response.header.Access-Control-Allow-Headers": true,
+                      "method.response.header.Access-Control-Allow-Methods": true
+                    },
+                    "ResponseModels": {}
+                  }
+                ],
+                "RequestParameters": {},
+                "Integration": {
+                  "Type": "MOCK",
+                  "RequestTemplates": {
+                    "application/json": "{statusCode:200}"
+                  },
+                  "ContentHandling": "CONVERT_TO_TEXT",
+                  "IntegrationResponses": [
+                    {
+                      "StatusCode": "200",
+                      "ResponseParameters": {
+                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                      },
+                      "ResponseTemplates": {
+                        "application/json": ""
+                      }
+                    }
+                  ]
+                },
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceCustommessage"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                }
+              }
+            },
+            "ApiGatewayMethodForgotpasswordOptions": "<REDACTED>",
+            "ApiGatewayMethodConfirmnewpasswordOptions": "<REDACTED>",
+            "ApiGatewayMethodRegisterPost": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "HttpMethod": "POST",
+                "RequestParameters": {},
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceRegister"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiKeyRequired": "<REDACTED>",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                  "IntegrationHttpMethod": "POST",
+                  "Type": "AWS_PROXY",
+                  "Uri": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":apigateway:",
+                        {
+                          "Ref": "AWS::Region"
+                        },
+                        ":lambda:path/2015-03-31/functions/",
+                        {
+                          "Fn::GetAtt": [
+                            "RegisterUserLambdaFunction",
+                            "Arn"
+                          ]
+                        },
+                        "/invocations"
+                      ]
+                    ]
+                  }
+                },
+                "MethodResponses": []
+              },
+              "DependsOn": [
+                "RegisterUserLambdaPermissionApiGateway"
+              ]
+            },
+            "ApiGatewayMethodGetuserinfoPost": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "HttpMethod": "POST",
+                "RequestParameters": {},
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceGetuserinfo"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiKeyRequired": "<REDACTED>",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                  "IntegrationHttpMethod": "POST",
+                  "Type": "AWS_PROXY",
+                  "Uri": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":apigateway:",
+                        {
+                          "Ref": "AWS::Region"
+                        },
+                        ":lambda:path/2015-03-31/functions/",
+                        {
+                          "Fn::GetAtt": [
+                            "GetUserInfoLambdaFunction",
+                            "Arn"
+                          ]
+                        },
+                        "/invocations"
+                      ]
+                    ]
+                  }
+                },
+                "MethodResponses": []
+              },
+              "DependsOn": [
+                "GetUserInfoLambdaPermissionApiGateway"
+              ]
+            },
+            "ApiGatewayMethodLoginPost": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "HttpMethod": "POST",
+                "RequestParameters": {},
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceLogin"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiKeyRequired": "<REDACTED>",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                  "IntegrationHttpMethod": "POST",
+                  "Type": "AWS_PROXY",
+                  "Uri": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":apigateway:",
+                        {
+                          "Ref": "AWS::Region"
+                        },
+                        ":lambda:path/2015-03-31/functions/",
+                        {
+                          "Fn::GetAtt": [
+                            "LoginUserLambdaFunction",
+                            "Arn"
+                          ]
+                        },
+                        "/invocations"
+                      ]
+                    ]
+                  }
+                },
+                "MethodResponses": []
+              },
+              "DependsOn": [
+                "LoginUserLambdaPermissionApiGateway"
+              ]
+            },
+            "ApiGatewayMethodCustommessagePost": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "HttpMethod": "POST",
+                "RequestParameters": {},
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceCustommessage"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiKeyRequired": "<REDACTED>",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                  "IntegrationHttpMethod": "POST",
+                  "Type": "AWS_PROXY",
+                  "Uri": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":apigateway:",
+                        {
+                          "Ref": "AWS::Region"
+                        },
+                        ":lambda:path/2015-03-31/functions/",
+                        {
+                          "Fn::GetAtt": [
+                            "CustomMessageLambdaFunction",
+                            "Arn"
+                          ]
+                        },
+                        "/invocations"
+                      ]
+                    ]
+                  }
+                },
+                "MethodResponses": []
+              },
+              "DependsOn": [
+                "CustomMessageLambdaPermissionApiGateway"
+              ]
+            },
+            "ApiGatewayMethodForgotpasswordPost": "<REDACTED>",
+            "ApiGatewayMethodConfirmnewpasswordPost": "<REDACTED>",
+            "ApiGatewayDeployment1729675612713": {
+              "Type": "AWS::ApiGateway::Deployment",
+              "Properties": {
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "StageName": "dev"
+              },
+              "DependsOn": [
+                "ApiGatewayMethodRegisterOptions",
+                "ApiGatewayMethodGetuserinfoOptions",
+                "ApiGatewayMethodLoginOptions",
+                "ApiGatewayMethodCustommessageOptions",
+                "ApiGatewayMethodForgotpasswordOptions",
+                "ApiGatewayMethodConfirmnewpasswordOptions",
+                "ApiGatewayMethodRegisterPost",
+                "ApiGatewayMethodGetuserinfoPost",
+                "ApiGatewayMethodLoginPost",
+                "ApiGatewayMethodCustommessagePost",
+                "ApiGatewayMethodForgotpasswordPost",
+                "ApiGatewayMethodConfirmnewpasswordPost"
+              ]
+            },
+            "RegisterUserLambdaPermissionApiGateway": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "RegisterUserLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "ApiGatewayRestApi"
+                      },
+                      "/*/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "GetUserInfoLambdaPermissionApiGateway": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "GetUserInfoLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "ApiGatewayRestApi"
+                      },
+                      "/*/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "LoginUserLambdaPermissionApiGateway": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "LoginUserLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "ApiGatewayRestApi"
+                      },
+                      "/*/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "CustomMessageLambdaPermissionApiGateway": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "CustomMessageLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "ApiGatewayRestApi"
+                      },
+                      "/*/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "ForgotPasswordLambdaPermissionApiGateway": "<REDACTED>",
+            "ConfirmNewPasswordLambdaPermissionApiGateway": "<REDACTED>"
+          },
+          "Outputs": {
+            "ServerlessDeploymentBucketName": {
+              "Value": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
+              "Export": {
+                "Name": "sls-auth-serverless1-dev-ServerlessDeploymentBucketName"
+              }
+            },
+            "RegisterUserLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "RegisterUserLambdaVersionwBcpCueIRJeA15UAA0biDPzH5DInGNllP1JjoU4aA"
+              },
+              "Export": {
+                "Name": "sls-auth-serverless1-dev-RegisterUserLambdaFunctionQualifiedArn"
+              }
+            },
+            "GetUserInfoLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "GetUserInfoLambdaVersionr9kYUKLVhDQkmIyR5yDlHI9OyEm2B3CJtu5a3qpTFAw"
+              },
+              "Export": {
+                "Name": "sls-auth-serverless1-dev-GetUserInfoLambdaFunctionQualifiedArn"
+              }
+            },
+            "LoginUserLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "LoginUserLambdaVersionDgNSOJ1hvsrxg3s9bRvULTgZXQBYo6iSkjkO2Z6EM"
+              },
+              "Export": {
+                "Name": "sls-auth-serverless1-dev-LoginUserLambdaFunctionQualifiedArn"
+              }
+            },
+            "CustomMessageLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "CustomMessageLambdaVersionaZ6c5eSufiDpxpfEVwaRQxlcJYsHMYQvGlbIGJ90Y"
+              },
+              "Export": {
+                "Name": "sls-auth-serverless1-dev-CustomMessageLambdaFunctionQualifiedArn"
+              }
+            },
+            "ForgotPasswordLambdaFunctionQualifiedArn": "<REDACTED>",
+            "ConfirmNewPasswordLambdaFunctionQualifiedArn": "<REDACTED>",
+            "ServiceEndpoint": {
+              "Description": "URL of the service endpoint",
+              "Value": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "https://",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    ".execute-api.",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ".",
+                    {
+                      "Ref": "AWS::URLSuffix"
+                    },
+                    "/dev"
+                  ]
+                ]
+              },
+              "Export": {
+                "Name": "sls-auth-serverless1-dev-ServiceEndpoint"
+              }
+            }
+          }
+        },
+        "vpc": {}
+      },
+      "functions": {
+        "registerUser": {
+          "handler": "register.registerUser",
+          "events": [
+            {
+              "http": {
+                "path": "register",
+                "method": "post",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "POST"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
+                "integration": "AWS_PROXY"
+              }
+            }
+          ],
+          "name": "auth-serverless1-dev-registerUser",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs18.x",
+          "vpc": {},
+          "versionLogicalId": "RegisterUserLambdaVersionwBcpCueIRJeA15UAA0biDPzH5DInGNllP1JjoU4aA"
+        },
+        "getUserInfo": {
+          "handler": "getUserInfo.GetUserInfo",
+          "events": [
+            {
+              "http": {
+                "path": "getUserInfo",
+                "method": "post",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "POST"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
+                "integration": "AWS_PROXY"
+              }
+            }
+          ],
+          "name": "auth-serverless1-dev-getUserInfo",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs18.x",
+          "vpc": {},
+          "versionLogicalId": "GetUserInfoLambdaVersionr9kYUKLVhDQkmIyR5yDlHI9OyEm2B3CJtu5a3qpTFAw"
+        },
+        "loginUser": {
+          "handler": "login.loginUser",
+          "events": [
+            {
+              "http": {
+                "path": "login",
+                "method": "post",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "POST"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
+                "integration": "AWS_PROXY"
+              }
+            }
+          ],
+          "name": "auth-serverless1-dev-loginUser",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs18.x",
+          "vpc": {},
+          "versionLogicalId": "LoginUserLambdaVersionDgNSOJ1hvsrxg3s9bRvULTgZXQBYo6iSkjkO2Z6EM"
+        },
+        "customMessage": {
+          "handler": "customMessage.customMessage",
+          "events": [
+            {
+              "http": {
+                "path": "customMessage",
+                "method": "post",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "POST"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
+                "integration": "AWS_PROXY"
+              }
+            }
+          ],
+          "name": "auth-serverless1-dev-customMessage",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs18.x",
+          "vpc": {},
+          "versionLogicalId": "CustomMessageLambdaVersionaZ6c5eSufiDpxpfEVwaRQxlcJYsHMYQvGlbIGJ90Y"
+        },
+        "forgotPassword": "<REDACTED>",
+        "confirmNewPassword": "<REDACTED>"
+      }
+    },
+    "serviceRawFile": "service: auth-serverless1\r\n\r\nprovider: \r\n  name: aws\r\n  runtime: nodejs18.x\r\n  region: us-east-1\r\n  iamRoleStatements: \r\n    - Effect: Allow \r\n      Action:\r\n      - cognito-idp:AdminGetUser\r\n      Resource: arn:aws:cognito-idp:us-east-1:381491854638:userpool/us-east-1_gnDA7HJkq\r\n    - Effect: Allow\r\n      Action:\r\n      - ssm:GetParameters\r\n      Resource: arn:aws:ssm:us-east-1:381491854638:parameter/prod-*\r\n\r\n\r\nfunctions:\r\n  registerUser:\r\n    handler: register.registerUser\r\n    events: \r\n      - http:\r\n          path: register\r\n          method: post \r\n          cors: true\r\n\r\n  getUserInfo:\r\n    handler: getUserInfo.GetUserInfo\r\n    events:\r\n      - http:\r\n          path: getUserInfo\r\n          method: post\r\n          cors: true\r\n  \r\n  loginUser:\r\n    handler: login.loginUser\r\n    events:\r\n      - http:\r\n         path: login\r\n         method: post\r\n         cors: true\r\n  \r\n  customMessage:\r\n    handler: customMessage.customMessage\r\n    events:\r\n      - http:\r\n          path: customMessage\r\n          method: post\r\n          cors: true\r\n\r\n  forgotPassword:\r\n    handler: forgotPassword.handler\r\n    events:\r\n      - http:\r\n          path: forgotPassword\r\n          method: post\r\n          cors: true\r\n\r\n  confirmNewPassword:\r\n    handler: confirmNewPassword.handler\r\n    events:\r\n      - http:\r\n          path: confirmNewPassword\r\n          method: post\r\n          cors: true\r\n\r\n\r\n          ",
+    "command": [
+      "deploy"
+    ],
+    "options": {},
+    "error": null,
+    "params": {},
+    "machineId": "d6051a4f8356e2380e8c051149b66184",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "3660fb48-a6a9-4e1e-a019-aeacdb110431",
+    "orgName": "elmaz251299",
+    "userId": "CHh6QcqPYjxPNVVzcD",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "elmaz251299",
+    "subscription": null,
+    "userEmail": "elmazelmaz79@gmail.com",
+    "serviceProviderAwsRegion": "us-east-1",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "381491854638",
+    "projectType": "traditional",
+    "versionSf": "4.4.7",
+    "serviceProviderAwsCfStackName": "auth-serverless1-dev",
+    "integrations": {},
+    "serviceUniqueId": "arn:aws:cloudformation:us-east-1:381491854638:stack/auth-serverless1-dev/3324e010-8884-11ef-b02d-0e34c62dc21d",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:381491854638:stack/auth-serverless1-dev/3324e010-8884-11ef-b02d-0e34c62dc21d",
+    "serviceProviderAwsCfStackCreated": "2024-10-12T10:24:44.813Z",
+    "serviceProviderAwsCfStackUpdated": "2024-10-23T09:27:07.117Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "RegisterUserLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-registerUser:15",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-auth-serverless1-dev-RegisterUserLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ConfirmNewPasswordLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-confirmNewPassword:4",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-auth-serverless1-dev-ConfirmNewPasswordLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "LoginUserLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-loginUser:14",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-auth-serverless1-dev-LoginUserLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "CustomMessageLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-customMessage:9",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-auth-serverless1-dev-CustomMessageLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ForgotPasswordLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-forgotPassword:6",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-auth-serverless1-dev-ForgotPasswordLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "GetUserInfoLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-getUserInfo:15",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-auth-serverless1-dev-GetUserInfoLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServiceEndpoint",
+        "OutputValue": "https://ztt0j6j0x8.execute-api.us-east-1.amazonaws.com/dev",
+        "Description": "URL of the service endpoint",
+        "ExportName": "sls-auth-serverless1-dev-ServiceEndpoint"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
+        "ExportName": "sls-auth-serverless1-dev-ServerlessDeploymentBucketName"
+      }
+    ]
+  }
+}
