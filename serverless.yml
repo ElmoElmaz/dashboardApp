@@ -4,15 +4,18 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: us-east-1
-  iamRoleStatements: 
-    - Effect: Allow 
-      Action:
-      - cognito-idp:AdminGetUser
-      Resource: arn:aws:cognito-idp:us-east-1:381491854638:userpool/us-east-1_gnDA7HJkq
-    - Effect: Allow
-      Action:
-      - ssm:GetParameters
-      Resource: arn:aws:ssm:us-east-1:381491854638:parameter/prod-*
+  iam:
+    role:
+      statements: 
+        - Effect: Allow 
+          Action:
+          - cognito-idp:AdminGetUser
+          Resource: arn:aws:cognito-idp:us-east-1:381491854638:userpool/us-east-1_gnDA7HJkq
+        - Effect: Allow
+          Action:
+          - ssm:GetParameters
+          - ssm:GetParameter
+          Resource: arn:aws:ssm:us-east-1:381491854638:parameter/prod-*
 
 
 functions:
@@ -39,6 +42,7 @@ functions:
          path: login
          method: post
          cors: true
+    
   
   customMessage:
     handler: customMessage.customMessage
@@ -55,6 +59,7 @@ functions:
           path: forgotPassword
           method: post
           cors: true
+    
 
   confirmNewPassword:
     handler: confirmNewPassword.handler
@@ -63,6 +68,3 @@ functions:
           path: confirmNewPassword
           method: post
           cors: true
-
-
-          

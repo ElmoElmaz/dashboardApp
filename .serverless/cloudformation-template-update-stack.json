@@ -106,7 +106,8 @@
                 {
                   "Effect": "Allow",
                   "Action": [
-                    "ssm:GetParameters"
+                    "ssm:GetParameters",
+                    "ssm:GetParameter"
                   ],
                   "Resource": "arn:aws:ssm:us-east-1:381491854638:parameter/prod-*"
                 }
@@ -135,7 +136,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
-          "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+          "S3Key": "serverless/auth-serverless1/dev/1729935051413-2024-10-26T09:30:51.413Z/auth-serverless1.zip"
         },
         "Handler": "register.registerUser",
         "Runtime": "nodejs18.x",
@@ -158,7 +159,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
-          "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+          "S3Key": "serverless/auth-serverless1/dev/1729935051413-2024-10-26T09:30:51.413Z/auth-serverless1.zip"
         },
         "Handler": "getUserInfo.GetUserInfo",
         "Runtime": "nodejs18.x",
@@ -181,7 +182,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
-          "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+          "S3Key": "serverless/auth-serverless1/dev/1729935051413-2024-10-26T09:30:51.413Z/auth-serverless1.zip"
         },
         "Handler": "login.loginUser",
         "Runtime": "nodejs18.x",
@@ -204,7 +205,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
-          "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+          "S3Key": "serverless/auth-serverless1/dev/1729935051413-2024-10-26T09:30:51.413Z/auth-serverless1.zip"
         },
         "Handler": "customMessage.customMessage",
         "Runtime": "nodejs18.x",
@@ -227,7 +228,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
-          "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+          "S3Key": "serverless/auth-serverless1/dev/1729935051413-2024-10-26T09:30:51.413Z/auth-serverless1.zip"
         },
         "Handler": "forgotPassword.handler",
         "Runtime": "nodejs18.x",
@@ -250,7 +251,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
-          "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+          "S3Key": "serverless/auth-serverless1/dev/1729935051413-2024-10-26T09:30:51.413Z/auth-serverless1.zip"
         },
         "Handler": "confirmNewPassword.handler",
         "Runtime": "nodejs18.x",
@@ -268,64 +269,64 @@
         "ConfirmNewPasswordLogGroup"
       ]
     },
-    "RegisterUserLambdaVersionwBcpCueIRJeA15UAA0biDPzH5DInGNllP1JjoU4aA": {
+    "RegisterUserLambdaVersionfk8fKN02x9OVMHk23sN5fgUeDgrMpwnwm1LIefU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "RegisterUserLambdaFunction"
         },
-        "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+        "CodeSha256": "vD+LqzR7QxXyGxKBWvouOYjgmDbURtiliUABHDdUyfw="
       }
     },
-    "GetUserInfoLambdaVersionr9kYUKLVhDQkmIyR5yDlHI9OyEm2B3CJtu5a3qpTFAw": {
+    "GetUserInfoLambdaVersionFNeLBOhTBkphJHK4TANELszh7avZh7ed7R5pqg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetUserInfoLambdaFunction"
         },
-        "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+        "CodeSha256": "vD+LqzR7QxXyGxKBWvouOYjgmDbURtiliUABHDdUyfw="
       }
     },
-    "LoginUserLambdaVersionDgNSOJ1hvsrxg3s9bRvULTgZXQBYo6iSkjkO2Z6EM": {
+    "LoginUserLambdaVersioneuhkf4reIO1icvj6wFJqYPUwK6E5TYJIabXDrvBKajs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "LoginUserLambdaFunction"
         },
-        "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+        "CodeSha256": "vD+LqzR7QxXyGxKBWvouOYjgmDbURtiliUABHDdUyfw="
       }
     },
-    "CustomMessageLambdaVersionaZ6c5eSufiDpxpfEVwaRQxlcJYsHMYQvGlbIGJ90Y": {
+    "CustomMessageLambdaVersionqq98yDxn8xecSIGBX7UQgR4YO4JOcAEM3enm5Rnbmg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CustomMessageLambdaFunction"
         },
-        "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+        "CodeSha256": "vD+LqzR7QxXyGxKBWvouOYjgmDbURtiliUABHDdUyfw="
       }
     },
-    "ForgotPasswordLambdaVersionzBH8w2f0FuUQJZZPt5AxTPt4UZLU8SKVjGOOKbR7gQ": {
+    "ForgotPasswordLambdaVersionXbSEGxSe25aQUXncpZRTnjtTfyUxchIthWgQnP4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ForgotPasswordLambdaFunction"
         },
-        "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+        "CodeSha256": "vD+LqzR7QxXyGxKBWvouOYjgmDbURtiliUABHDdUyfw="
       }
     },
-    "ConfirmNewPasswordLambdaVersion0eV18G83ngr8HVT2n0Z7DUUo8eM7pcfMcn7aIEdBX8": {
+    "ConfirmNewPasswordLambdaVersion1kZfJl1VZtb8zurOv2gQEBc8sQMP56kPlfez4qS1c": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ConfirmNewPasswordLambdaFunction"
         },
-        "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+        "CodeSha256": "vD+LqzR7QxXyGxKBWvouOYjgmDbURtiliUABHDdUyfw="
       }
     },
     "ApiGatewayRestApi": {
@@ -976,7 +977,7 @@
         "ConfirmNewPasswordLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1729675612713": {
+    "ApiGatewayDeployment1729935047863": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1232,7 +1233,7 @@
     "RegisterUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "RegisterUserLambdaVersionwBcpCueIRJeA15UAA0biDPzH5DInGNllP1JjoU4aA"
+        "Ref": "RegisterUserLambdaVersionfk8fKN02x9OVMHk23sN5fgUeDgrMpwnwm1LIefU"
       },
       "Export": {
         "Name": "sls-auth-serverless1-dev-RegisterUserLambdaFunctionQualifiedArn"
@@ -1241,7 +1242,7 @@
     "GetUserInfoLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetUserInfoLambdaVersionr9kYUKLVhDQkmIyR5yDlHI9OyEm2B3CJtu5a3qpTFAw"
+        "Ref": "GetUserInfoLambdaVersionFNeLBOhTBkphJHK4TANELszh7avZh7ed7R5pqg"
       },
       "Export": {
         "Name": "sls-auth-serverless1-dev-GetUserInfoLambdaFunctionQualifiedArn"
@@ -1250,7 +1251,7 @@
     "LoginUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "LoginUserLambdaVersionDgNSOJ1hvsrxg3s9bRvULTgZXQBYo6iSkjkO2Z6EM"
+        "Ref": "LoginUserLambdaVersioneuhkf4reIO1icvj6wFJqYPUwK6E5TYJIabXDrvBKajs"
       },
       "Export": {
         "Name": "sls-auth-serverless1-dev-LoginUserLambdaFunctionQualifiedArn"
@@ -1259,7 +1260,7 @@
     "CustomMessageLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CustomMessageLambdaVersionaZ6c5eSufiDpxpfEVwaRQxlcJYsHMYQvGlbIGJ90Y"
+        "Ref": "CustomMessageLambdaVersionqq98yDxn8xecSIGBX7UQgR4YO4JOcAEM3enm5Rnbmg"
       },
       "Export": {
         "Name": "sls-auth-serverless1-dev-CustomMessageLambdaFunctionQualifiedArn"
@@ -1268,7 +1269,7 @@
     "ForgotPasswordLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ForgotPasswordLambdaVersionzBH8w2f0FuUQJZZPt5AxTPt4UZLU8SKVjGOOKbR7gQ"
+        "Ref": "ForgotPasswordLambdaVersionXbSEGxSe25aQUXncpZRTnjtTfyUxchIthWgQnP4"
       },
       "Export": {
         "Name": "sls-auth-serverless1-dev-ForgotPasswordLambdaFunctionQualifiedArn"
@@ -1277,7 +1278,7 @@
     "ConfirmNewPasswordLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ConfirmNewPasswordLambdaVersion0eV18G83ngr8HVT2n0Z7DUUo8eM7pcfMcn7aIEdBX8"
+        "Ref": "ConfirmNewPasswordLambdaVersion1kZfJl1VZtb8zurOv2gQEBc8sQMP56kPlfez4qS1c"
       },
       "Export": {
         "Name": "sls-auth-serverless1-dev-ConfirmNewPasswordLambdaFunctionQualifiedArn"

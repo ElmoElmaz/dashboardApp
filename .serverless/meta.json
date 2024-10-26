@@ -17,22 +17,27 @@
         "name": "aws",
         "runtime": "nodejs18.x",
         "region": "us-east-1",
-        "iamRoleStatements": [
-          {
-            "Effect": "Allow",
-            "Action": [
-              "cognito-idp:AdminGetUser"
-            ],
-            "Resource": "arn:aws:cognito-idp:us-east-1:381491854638:userpool/us-east-1_gnDA7HJkq"
-          },
-          {
-            "Effect": "Allow",
-            "Action": [
-              "ssm:GetParameters"
-            ],
-            "Resource": "arn:aws:ssm:us-east-1:381491854638:parameter/prod-*"
+        "iam": {
+          "role": {
+            "statements": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "cognito-idp:AdminGetUser"
+                ],
+                "Resource": "arn:aws:cognito-idp:us-east-1:381491854638:userpool/us-east-1_gnDA7HJkq"
+              },
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "ssm:GetParameters",
+                  "ssm:GetParameter"
+                ],
+                "Resource": "arn:aws:ssm:us-east-1:381491854638:parameter/prod-*"
+              }
+            ]
           }
-        ],
+        },
         "stage": "dev",
         "versionFunctions": true,
         "compiledCloudFormationTemplate": {
@@ -133,7 +138,8 @@
                         {
                           "Effect": "Allow",
                           "Action": [
-                            "ssm:GetParameters"
+                            "ssm:GetParameters",
+                            "ssm:GetParameter"
                           ],
                           "Resource": "arn:aws:ssm:us-east-1:381491854638:parameter/prod-*"
                         }
@@ -162,7 +168,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
-                  "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+                  "S3Key": "serverless/auth-serverless1/dev/1729935051413-2024-10-26T09:30:51.413Z/auth-serverless1.zip"
                 },
                 "Handler": "register.registerUser",
                 "Runtime": "nodejs18.x",
@@ -185,7 +191,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
-                  "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+                  "S3Key": "serverless/auth-serverless1/dev/1729935051413-2024-10-26T09:30:51.413Z/auth-serverless1.zip"
                 },
                 "Handler": "getUserInfo.GetUserInfo",
                 "Runtime": "nodejs18.x",
@@ -208,7 +214,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
-                  "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+                  "S3Key": "serverless/auth-serverless1/dev/1729935051413-2024-10-26T09:30:51.413Z/auth-serverless1.zip"
                 },
                 "Handler": "login.loginUser",
                 "Runtime": "nodejs18.x",
@@ -231,7 +237,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-us-east-1-5116c48f-c0d4",
-                  "S3Key": "serverless/auth-serverless1/dev/1729675616165-2024-10-23T09:26:56.165Z/auth-serverless1.zip"
+                  "S3Key": "serverless/auth-serverless1/dev/1729935051413-2024-10-26T09:30:51.413Z/auth-serverless1.zip"
                 },
                 "Handler": "customMessage.customMessage",
                 "Runtime": "nodejs18.x",
@@ -251,48 +257,48 @@
             },
             "ForgotPasswordLambdaFunction": "<REDACTED>",
             "ConfirmNewPasswordLambdaFunction": "<REDACTED>",
-            "RegisterUserLambdaVersionwBcpCueIRJeA15UAA0biDPzH5DInGNllP1JjoU4aA": {
+            "RegisterUserLambdaVersionfk8fKN02x9OVMHk23sN5fgUeDgrMpwnwm1LIefU": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "RegisterUserLambdaFunction"
                 },
-                "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+                "CodeSha256": "vD+LqzR7QxXyGxKBWvouOYjgmDbURtiliUABHDdUyfw="
               }
             },
-            "GetUserInfoLambdaVersionr9kYUKLVhDQkmIyR5yDlHI9OyEm2B3CJtu5a3qpTFAw": {
+            "GetUserInfoLambdaVersionFNeLBOhTBkphJHK4TANELszh7avZh7ed7R5pqg": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetUserInfoLambdaFunction"
                 },
-                "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+                "CodeSha256": "vD+LqzR7QxXyGxKBWvouOYjgmDbURtiliUABHDdUyfw="
               }
             },
-            "LoginUserLambdaVersionDgNSOJ1hvsrxg3s9bRvULTgZXQBYo6iSkjkO2Z6EM": {
+            "LoginUserLambdaVersioneuhkf4reIO1icvj6wFJqYPUwK6E5TYJIabXDrvBKajs": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "LoginUserLambdaFunction"
                 },
-                "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+                "CodeSha256": "vD+LqzR7QxXyGxKBWvouOYjgmDbURtiliUABHDdUyfw="
               }
             },
-            "CustomMessageLambdaVersionaZ6c5eSufiDpxpfEVwaRQxlcJYsHMYQvGlbIGJ90Y": {
+            "CustomMessageLambdaVersionqq98yDxn8xecSIGBX7UQgR4YO4JOcAEM3enm5Rnbmg": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "CustomMessageLambdaFunction"
                 },
-                "CodeSha256": "MAC478bAAXO2kcpWfQ3iehayXLMbhVXNWu1JGxaCZR4="
+                "CodeSha256": "vD+LqzR7QxXyGxKBWvouOYjgmDbURtiliUABHDdUyfw="
               }
             },
-            "ForgotPasswordLambdaVersionzBH8w2f0FuUQJZZPt5AxTPt4UZLU8SKVjGOOKbR7gQ": "<REDACTED>",
-            "ConfirmNewPasswordLambdaVersion0eV18G83ngr8HVT2n0Z7DUUo8eM7pcfMcn7aIEdBX8": "<REDACTED>",
+            "ForgotPasswordLambdaVersionXbSEGxSe25aQUXncpZRTnjtTfyUxchIthWgQnP4": "<REDACTED>",
+            "ConfirmNewPasswordLambdaVersion1kZfJl1VZtb8zurOv2gQEBc8sQMP56kPlfez4qS1c": "<REDACTED>",
             "ApiGatewayRestApi": {
               "Type": "AWS::ApiGateway::RestApi",
               "Properties": {
@@ -735,7 +741,7 @@
             },
             "ApiGatewayMethodForgotpasswordPost": "<REDACTED>",
             "ApiGatewayMethodConfirmnewpasswordPost": "<REDACTED>",
-            "ApiGatewayDeployment1729675612713": {
+            "ApiGatewayDeployment1729935047863": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -919,7 +925,7 @@
             "RegisterUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "RegisterUserLambdaVersionwBcpCueIRJeA15UAA0biDPzH5DInGNllP1JjoU4aA"
+                "Ref": "RegisterUserLambdaVersionfk8fKN02x9OVMHk23sN5fgUeDgrMpwnwm1LIefU"
               },
               "Export": {
                 "Name": "sls-auth-serverless1-dev-RegisterUserLambdaFunctionQualifiedArn"
@@ -928,7 +934,7 @@
             "GetUserInfoLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetUserInfoLambdaVersionr9kYUKLVhDQkmIyR5yDlHI9OyEm2B3CJtu5a3qpTFAw"
+                "Ref": "GetUserInfoLambdaVersionFNeLBOhTBkphJHK4TANELszh7avZh7ed7R5pqg"
               },
               "Export": {
                 "Name": "sls-auth-serverless1-dev-GetUserInfoLambdaFunctionQualifiedArn"
@@ -937,7 +943,7 @@
             "LoginUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "LoginUserLambdaVersionDgNSOJ1hvsrxg3s9bRvULTgZXQBYo6iSkjkO2Z6EM"
+                "Ref": "LoginUserLambdaVersioneuhkf4reIO1icvj6wFJqYPUwK6E5TYJIabXDrvBKajs"
               },
               "Export": {
                 "Name": "sls-auth-serverless1-dev-LoginUserLambdaFunctionQualifiedArn"
@@ -946,7 +952,7 @@
             "CustomMessageLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "CustomMessageLambdaVersionaZ6c5eSufiDpxpfEVwaRQxlcJYsHMYQvGlbIGJ90Y"
+                "Ref": "CustomMessageLambdaVersionqq98yDxn8xecSIGBX7UQgR4YO4JOcAEM3enm5Rnbmg"
               },
               "Export": {
                 "Name": "sls-auth-serverless1-dev-CustomMessageLambdaFunctionQualifiedArn"
@@ -1019,7 +1025,7 @@
           "timeout": 6,
           "runtime": "nodejs18.x",
           "vpc": {},
-          "versionLogicalId": "RegisterUserLambdaVersionwBcpCueIRJeA15UAA0biDPzH5DInGNllP1JjoU4aA"
+          "versionLogicalId": "RegisterUserLambdaVersionfk8fKN02x9OVMHk23sN5fgUeDgrMpwnwm1LIefU"
         },
         "getUserInfo": {
           "handler": "getUserInfo.GetUserInfo",
@@ -1055,7 +1061,7 @@
           "timeout": 6,
           "runtime": "nodejs18.x",
           "vpc": {},
-          "versionLogicalId": "GetUserInfoLambdaVersionr9kYUKLVhDQkmIyR5yDlHI9OyEm2B3CJtu5a3qpTFAw"
+          "versionLogicalId": "GetUserInfoLambdaVersionFNeLBOhTBkphJHK4TANELszh7avZh7ed7R5pqg"
         },
         "loginUser": {
           "handler": "login.loginUser",
@@ -1091,7 +1097,7 @@
           "timeout": 6,
           "runtime": "nodejs18.x",
           "vpc": {},
-          "versionLogicalId": "LoginUserLambdaVersionDgNSOJ1hvsrxg3s9bRvULTgZXQBYo6iSkjkO2Z6EM"
+          "versionLogicalId": "LoginUserLambdaVersioneuhkf4reIO1icvj6wFJqYPUwK6E5TYJIabXDrvBKajs"
         },
         "customMessage": {
           "handler": "customMessage.customMessage",
@@ -1127,13 +1133,13 @@
           "timeout": 6,
           "runtime": "nodejs18.x",
           "vpc": {},
-          "versionLogicalId": "CustomMessageLambdaVersionaZ6c5eSufiDpxpfEVwaRQxlcJYsHMYQvGlbIGJ90Y"
+          "versionLogicalId": "CustomMessageLambdaVersionqq98yDxn8xecSIGBX7UQgR4YO4JOcAEM3enm5Rnbmg"
         },
         "forgotPassword": "<REDACTED>",
         "confirmNewPassword": "<REDACTED>"
       }
     },
-    "serviceRawFile": "service: auth-serverless1\r\n\r\nprovider: \r\n  name: aws\r\n  runtime: nodejs18.x\r\n  region: us-east-1\r\n  iamRoleStatements: \r\n    - Effect: Allow \r\n      Action:\r\n      - cognito-idp:AdminGetUser\r\n      Resource: arn:aws:cognito-idp:us-east-1:381491854638:userpool/us-east-1_gnDA7HJkq\r\n    - Effect: Allow\r\n      Action:\r\n      - ssm:GetParameters\r\n      Resource: arn:aws:ssm:us-east-1:381491854638:parameter/prod-*\r\n\r\n\r\nfunctions:\r\n  registerUser:\r\n    handler: register.registerUser\r\n    events: \r\n      - http:\r\n          path: register\r\n          method: post \r\n          cors: true\r\n\r\n  getUserInfo:\r\n    handler: getUserInfo.GetUserInfo\r\n    events:\r\n      - http:\r\n          path: getUserInfo\r\n          method: post\r\n          cors: true\r\n  \r\n  loginUser:\r\n    handler: login.loginUser\r\n    events:\r\n      - http:\r\n         path: login\r\n         method: post\r\n         cors: true\r\n  \r\n  customMessage:\r\n    handler: customMessage.customMessage\r\n    events:\r\n      - http:\r\n          path: customMessage\r\n          method: post\r\n          cors: true\r\n\r\n  forgotPassword:\r\n    handler: forgotPassword.handler\r\n    events:\r\n      - http:\r\n          path: forgotPassword\r\n          method: post\r\n          cors: true\r\n\r\n  confirmNewPassword:\r\n    handler: confirmNewPassword.handler\r\n    events:\r\n      - http:\r\n          path: confirmNewPassword\r\n          method: post\r\n          cors: true\r\n\r\n\r\n          ",
+    "serviceRawFile": "service: auth-serverless1\r\n\r\nprovider: \r\n  name: aws\r\n  runtime: nodejs18.x\r\n  region: us-east-1\r\n  iam:\r\n    role:\r\n      statements: \r\n        - Effect: Allow \r\n          Action:\r\n          - cognito-idp:AdminGetUser\r\n          Resource: arn:aws:cognito-idp:us-east-1:381491854638:userpool/us-east-1_gnDA7HJkq\r\n        - Effect: Allow\r\n          Action:\r\n          - ssm:GetParameters\r\n          - ssm:GetParameter\r\n          Resource: arn:aws:ssm:us-east-1:381491854638:parameter/prod-*\r\n\r\n\r\nfunctions:\r\n  registerUser:\r\n    handler: register.registerUser\r\n    events: \r\n      - http:\r\n          path: register\r\n          method: post \r\n          cors: true\r\n\r\n  getUserInfo:\r\n    handler: getUserInfo.GetUserInfo\r\n    events:\r\n      - http:\r\n          path: getUserInfo\r\n          method: post\r\n          cors: true\r\n  \r\n  loginUser:\r\n    handler: login.loginUser\r\n    events:\r\n      - http:\r\n         path: login\r\n         method: post\r\n         cors: true\r\n    \r\n  \r\n  customMessage:\r\n    handler: customMessage.customMessage\r\n    events:\r\n      - http:\r\n          path: customMessage\r\n          method: post\r\n          cors: true\r\n\r\n  forgotPassword:\r\n    handler: forgotPassword.handler\r\n    events:\r\n      - http:\r\n          path: forgotPassword\r\n          method: post\r\n          cors: true\r\n    \r\n\r\n  confirmNewPassword:\r\n    handler: confirmNewPassword.handler\r\n    events:\r\n      - http:\r\n          path: confirmNewPassword\r\n          method: post\r\n          cors: true",
     "command": [
       "deploy"
     ],
@@ -1169,42 +1175,42 @@
     "serviceUniqueId": "arn:aws:cloudformation:us-east-1:381491854638:stack/auth-serverless1-dev/3324e010-8884-11ef-b02d-0e34c62dc21d",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:381491854638:stack/auth-serverless1-dev/3324e010-8884-11ef-b02d-0e34c62dc21d",
     "serviceProviderAwsCfStackCreated": "2024-10-12T10:24:44.813Z",
-    "serviceProviderAwsCfStackUpdated": "2024-10-23T09:27:07.117Z",
+    "serviceProviderAwsCfStackUpdated": "2024-10-26T09:31:03.435Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "RegisterUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-registerUser:15",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-registerUser:29",
         "Description": "Current Lambda function version",
         "ExportName": "sls-auth-serverless1-dev-RegisterUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "ConfirmNewPasswordLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-confirmNewPassword:4",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-confirmNewPassword:18",
         "Description": "Current Lambda function version",
         "ExportName": "sls-auth-serverless1-dev-ConfirmNewPasswordLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "LoginUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-loginUser:14",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-loginUser:28",
         "Description": "Current Lambda function version",
         "ExportName": "sls-auth-serverless1-dev-LoginUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "CustomMessageLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-customMessage:9",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-customMessage:22",
         "Description": "Current Lambda function version",
         "ExportName": "sls-auth-serverless1-dev-CustomMessageLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "ForgotPasswordLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-forgotPassword:6",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-forgotPassword:20",
         "Description": "Current Lambda function version",
         "ExportName": "sls-auth-serverless1-dev-ForgotPasswordLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetUserInfoLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-getUserInfo:15",
+        "OutputValue": "arn:aws:lambda:us-east-1:381491854638:function:auth-serverless1-dev-getUserInfo:29",
         "Description": "Current Lambda function version",
         "ExportName": "sls-auth-serverless1-dev-GetUserInfoLambdaFunctionQualifiedArn"
       },

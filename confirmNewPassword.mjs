@@ -11,23 +11,20 @@ const inputClientId = {
   Name: "prod-ClientId", 
   WithDecryption: true
 };
-const commandClientId = new GetParameterCommand(inputClientId);
-const responseClientId = await clientssm.send(commandClientId);
-
+const responseClientId = await clientssm.send(new GetParameterCommand(inputClientId));
+const clientId = responseClientId.Parameter.Value;
 
 const inputClientSecret = {
     Name: "prod-ClientSecret",
     WithDecryption: true
 };
-const commandClientSecret = new GetParameterCommand(inputClientSecret);
-const responseClientSecret = await clientssm.send(commandClientSecret);
-console.log("Tukaaaaaaaaaaaa", responseClientSecret)
+const responseClientSecret = await clientssm.send(new GetParameterCommand(inputClientSecret));
 const clientSecret = responseClientSecret.Parameter.Value
 
 
 
 const client = new CognitoIdentityProviderClient({region: 'us-east-1'});
-const clientId = '';
+
 
 const secretHash = calculateSecretHash(clientSecret, email, clientId);
 
